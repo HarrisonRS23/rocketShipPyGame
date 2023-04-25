@@ -22,7 +22,8 @@ YELLOW = (255,255,0)
 BORDER = pygame.Rect(WIDTH//2 - 5 , 0, 10, HEIGHT, ) # -5 to have rect in middle of screen
 
 
-
+#BULLET_HIT_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Grenade+1.mp3'))
+#BULLET_FIRSE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Gun+Silencer+1.mp3'))
 
 
 HEALTH_FONT = pygame.font.SysFont('comicsans', 40) 
@@ -141,17 +142,22 @@ def main():
                 if event.key == pygame.K_q and len(yellow_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(yellow.x + yellow.width, yellow.y + yellow.height//2 - 2, 10, 5) #width of bullet 10 and height 5
                     yellow_bullets.append(bullet)
+                    #BULLET_FIRSE_SOUND.play()
 
                 if event.key == pygame.K_SLASH and len(red_bullets) < MAX_BULLETS:
                     bullet = pygame.Rect(red.x , red.y + red.height//2 - 2, 10, 5) #width of bullet 10 and height 5
                     red_bullets.append(bullet)
+                    #BULLET_FIRSE_SOUND.play()
         
             
             if event.type == RED_HIT:
                 red_health -= 1
+                #BULLET_HIT_SOUND.play()
             
             if event.type == YELLOW_HIT:
                 yellow_health -= 1
+                #BULLET_HIT_SOUND.play()
+
         winner_text = ""
         if red_health <= 0:
             winner_text = "Yellow Wins!"
